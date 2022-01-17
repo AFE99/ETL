@@ -1,3 +1,19 @@
 news_sites:
   mouseml:
     url: https://listado.mercadolibre.com.ar/mouse#D[A:mouse]
+    queries:
+      homepage_article_links: '.ui-search-item__group__element'
+      article_body: '.price-tag-fraction'
+      article_title: '.ui-pdp-title'
+  mousecg:
+    url: https://www.diamondcomputacion.com.ar/productsKeyword/mouse
+    queries:
+      homepage_article_links: '.product-preview-link'
+      article_body: '.precio'
+      article_title: '.title'
+  api:
+    url: https://api.mercadolibre.com/sites/MLA/search?q=nissan&limit=50#json
+    queries:
+      homepage_article_links: '.permalink'
+      #article_body: '.precio'
+      #article_title: '.title'
