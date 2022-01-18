@@ -6,11 +6,11 @@ news_sites:
       article_body: '.price-tag-fraction'
       article_title: '.ui-pdp-title'
   mousecg:
-    url: https://www.diamondcomputacion.com.ar/productsKeyword/mouse
+    url: https://www.clarin.com
     queries:
-      homepage_article_links: '.product-preview-link'
-      article_body: '.precio'
-      article_title: '.title'
+      homepage_article_links: '.link_article'
+      article_body: '.body-nota'
+      article_title: 'title'
   api:
     url: https://api.mercadolibre.com/sites/MLA/search?q=nissan&limit=50#json
     queries:

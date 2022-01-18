@@ -34,7 +34,7 @@ class HomePage(NewsPage): #representa la pagina principal de nuestra web, clase 
             if link and link.has_attr('href'): #Si lo que encontré tiene un href lo tomo y agrego a la lista de links
                 link_list.append(link)
             #Ocupo 'set' para que no me devuelva links repetidos en la lista link_list
-            return set(link['href'] for link in link_list) 
+        return set(link['href'] for link in link_list) 
 
 class ArticlePage(NewsPage): #representa la interaccion con cada articulo, clase HIJA de NewsPage
 
