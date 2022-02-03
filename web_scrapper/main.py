@@ -19,7 +19,7 @@ is_well_formed_link = re.compile(r'^https?://.+/.+$') #Esta expresion regular se
 is_root_path = re.compile(r'^/.+$') #Esta expresion 'acepta' los enlaces que hacen referencia a un path, por ej: /some-text
 
 def _news_scraper(news_site_uid):
-	host = config()['news_sites'][news_site_uid]['url']
+	host = config()['sites'][news_site_uid]['url']
 
 	logging.info('Beginning scraper for {}'.format(host))
 	homepage = news.HomePage(news_site_uid,host)
@@ -58,7 +58,7 @@ def _fetch_article(news_site_uid, host, link):
 	except (HTTPError, MaxRetryError) as e:
 		logger.warning('Error while fetching the article', exc_info=False)
 
-	if article and not article.body:
+	if article and not article.score:
 		logger.warning('Invalid article. There is no body')
 		return None
 
@@ -76,7 +76,7 @@ def _build_link(host, link):
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
 
-	news_site_choices = list(config()['news_sites'].keys())
+	news_site_choices = list(config()['sites'].keys())
 	parser.add_argument('news_site', #Tengo que pasar como argumento una pagina declarada en el config.yaml
 			help='The news site that you want to scrape',
 			type=str,

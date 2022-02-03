@@ -1,19 +1,19 @@
-news_sites:
-  mouseml:
-    url: https://listado.mercadolibre.com.ar/mouse#D[A:mouse]
+sites:
+  redragon:
+    url: https://listado.mercadolibre.com.ar/mouse-redragon#D[A:mouse%20redragon]
     queries:
       homepage_article_links: '.ui-search-item__group__element'
-      article_body: '.price-tag-fraction'
+      article_score: '.ui-pdp-reviews__rating__summary__average'
       article_title: '.ui-pdp-title'
-  mousecg:
-    url: https://www.clarin.com
+  razer:
+    url: https://listado.mercadolibre.com.ar/mouse-razer#D[A:mouse%20razer]
     queries:
-      homepage_article_links: '.link_article'
-      article_body: '.body-nota'
-      article_title: 'title'
-  api:
-    url: https://api.mercadolibre.com/sites/MLA/search?q=nissan&limit=50#json
+      homepage_article_links: '.ui-search-item__group__element'
+      article_score: '.ui-pdp-reviews__rating__summary__average'
+      article_title: '.ui-pdp-title'
+  logitech:
+    url: https://listado.mercadolibre.com.ar/mouse-logitech#D[A:mouse%20logitech]
     queries:
-      homepage_article_links: '.permalink'
-      #article_body: '.precio'
-      #article_title: '.title'
+      homepage_article_links: '.ui-search-item__group__element'
+      article_score: '.ui-pdp-reviews__rating__summary__average'
+      article_title: '.ui-pdp-title'

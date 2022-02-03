@@ -5,12 +5,13 @@ from common import config
 #Declaro una clase PADRE con metodos reutilizables en las diferentes paginas a visitar
 class NewsPage:
     #Funcion que inicializa la clase
-    def __init__(self, news_site_uid, url): 
-        self._config = config()['news_sites'][news_site_uid]
+    def __init__(self, site_uid, url): 
+        self._config = config()['sites'][site_uid]
         self._queries = self._config['queries']
         self._html= None
+        self._url = url
 
-        self._visit(url) #Llamo a la funcion _visit para que visite y parsee la url
+        self._visit(self._url) #Llamo a la funcion _visit para que visite y parsee la url
 
     def _select(self, query_string):
         return self._html.select(query_string)
@@ -24,8 +25,8 @@ class NewsPage:
         self._html = bs4.BeautifulSoup(response.text, 'html.parser') 
 
 class HomePage(NewsPage): #representa la pagina principal de nuestra web, clase HIJA de NewsPage
-    def __init__(self, news_site_uid, url): #Funcion que inicializa la clase
-        super().__init__(news_site_uid, url) #Heredamos de NewsPage la inicializacion de clase
+    def __init__(self, site_uid, url): #Funcion que inicializa la clase
+        super().__init__(site_uid, url) #Heredamos de NewsPage la inicializacion de clase
 
     @property
     def article_links(self):
@@ -38,12 +39,16 @@ class HomePage(NewsPage): #representa la pagina principal de nuestra web, clase 
 
 class ArticlePage(NewsPage): #representa la interaccion con cada articulo, clase HIJA de NewsPage
 
-    def __init__(self, news_site_uid, url): #Funcion que inicializa la clase
-        super().__init__(news_site_uid, url) #Heredamos de NewsPage la inicializacion de clase
+    def __init__(self, site_uid, url): #Funcion que inicializa la clase
+        super().__init__(site_uid, url) #Heredamos de NewsPage la inicializacion de clase
 
     @property
-    def body(self):
-        result = self._select(self._queries['article_body']) #Hago un select de las cosas que encuentre en el codigo html que coincida con lo que especifiqué en article_body (config.yaml)
+    def url(self):
+        return self._url
+
+    @property
+    def score(self):
+        result = self._select(self._queries['article_score']) #Hago un select de las cosas que encuentre en el codigo html que coincida con lo que especifiqué en article_body (config.yaml)
         return result[0].text if len(result) else '' #Cuando ingreso al link de un articulo, el select me devuelve una lista, suponiendo que el primer elemento es el body, lo tomo y lo retorno, si esta vacio, devuelvo nada ''
 
     @property
